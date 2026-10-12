@@ -8,81 +8,63 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Tables\Filters\SelectFilter;
-use Filament\Actions\ViewAction;
-
 
 class IdeasTable
 {
     public static function configure(Table $table): Table
     {
         return $table
-            ->heading('Proyecto Ideas - Lozano Matus Miriam Doyel')
             ->columns([
-                // 1. Columna del número de fila
                 TextColumn::make('id')
-                    ->label('#')
-                    ->rowIndex(),
-
-                // 2. Columna del título
+                ->label('ID')
+                ->sortable()
+                ->searchable(),
                 TextColumn::make('titulo')
-                    ->label('Idea')
-                    ->searchable()
-                    ->sortable(),
-
-                // 3. Columna de descripción
-                TextColumn::make('descripcion')
-                    ->label('Descripción')
-                    ->searchable()
-                    ->sortable(),
-
-                // 4. Columna del estado de la idea
+                    ->label('Titulo:')
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('estado')
-                    ->label('Estado')
-                    ->sortable(),
-
-                // 5. Columna del autor
+                    ->label('Estado:')
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('autor')
-                    ->label('Autor')
-                    ->searchable()
-                    ->sortable(),
-
-                // 6. Columna de relación con Categoría
+                    ->label('Autor:')
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('categoria.nombre')
-                    ->label('Categoría')
-                    ->searchable()
-                    ->sortable(),
-
-                // 7. Columna de fechas de creado
+                    ->label('Categoria')
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('created_at')
-                    ->label('Creado el')
+                    ->label('Creado el:')
+                    ->dateTime()
                     ->sortable()
+                    ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
-
-                // 8. Actualizado el
                 TextColumn::make('updated_at')
-                    ->label('Actualizado el')
+                    ->label('Actualizado el:')
+                    ->dateTime()
                     ->sortable()
+                    ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                // 9. Filtros para el estado
                 SelectFilter::make('estado')
-                    ->label('Estado')
-                    ->options([
-                        'registrada' => 'Registrada',
-                        'en revisión' => 'En revision',
-                        'aprobada' => 'Aprobada',      
-                        'rechazada' => 'Rechazada',
-                    ])
-            ])
+                ->options([
+                    'Registrada' => 'Registrada',
+                    'En revisión' => 'En revisión',
+                    'Aprobada' => 'Aprobada',
+                    'Rechazada' => 'Rechazada',
+        ]),
+])
+            
             ->recordActions([
                 EditAction::make(),
-                ViewAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                ])
+                ]),
             ]);
     }
 }

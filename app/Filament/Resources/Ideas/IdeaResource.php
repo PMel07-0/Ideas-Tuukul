@@ -20,7 +20,7 @@ class IdeaResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'titulo';
+    protected static ?string $recordTitleAttribute = 'Idea';
 
     public static function form(Schema $schema): Schema
     {

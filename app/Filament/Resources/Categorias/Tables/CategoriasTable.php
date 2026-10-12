@@ -13,24 +13,26 @@ class CategoriasTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->columns([
+            ->columns([   
                 TextColumn::make('id')
-                    ->label('Id')
-                    ->searchable()
-                    ->sortable(),
+                    ->label('ID')
+                    ->sortable()
+                    ->searchable(),    
                 TextColumn::make('nombre')
-                    ->label('Categoría')
+                    ->label('Categoría:')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('descripcion')
-                    ->label('Descripción')
+                    ->label('Descripción:')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('created_at')
-                    ->label('Creada el')
+                    ->label('Creado en:')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
-                    ->label ('Actualizada el')
+                    ->label('Actualizado en:')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -44,7 +46,7 @@ class CategoriasTable
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                ])
+                ]),
             ]);
     }
 }
